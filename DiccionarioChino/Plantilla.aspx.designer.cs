@@ -10,60 +10,78 @@
 namespace DiccionarioChino {
     
     
-    public partial class PSuplementarias {
+    public partial class Plantilla {
         
         /// <summary>
-        /// Control formSuplementarias.
+        /// Control rblibro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formSuplementarias;
+        protected global::System.Web.UI.WebControls.RadioButton rblibro;
         
         /// <summary>
-        /// Control GVsuplementarias.
+        /// Control rbsuple.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVsuplementarias;
+        protected global::System.Web.UI.WebControls.RadioButton rbsuple;
         
         /// <summary>
-        /// Control primero.
+        /// Control DDfuenteL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton primero;
+        protected global::System.Web.UI.WebControls.DropDownList DDfuenteL;
         
         /// <summary>
-        /// Control anterior.
+        /// Control cantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton anterior;
+        protected global::System.Web.UI.WebControls.Panel cantidad;
         
         /// <summary>
-        /// Control siguiente.
+        /// Control lbcantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton siguiente;
+        protected global::System.Web.UI.WebControls.Label lbcantidad;
         
         /// <summary>
-        /// Control ultimo.
+        /// Control tbdesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ultimo;
+        protected global::System.Web.UI.WebControls.TextBox tbdesde;
+        
+        /// <summary>
+        /// Control tbhasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbhasta;
+        
+        /// <summary>
+        /// Control generar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton generar;
     }
 }

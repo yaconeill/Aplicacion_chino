@@ -62,7 +62,7 @@ namespace DiccionarioChino
                 DDTema.DataBind();
             }
             //Add blank item at index 0.
-            DDTema.Items.Insert(0,new ListItem("--Seleccionar tema--","0"));
+            DDTema.Items.Insert(0, new ListItem("--Seleccionar tema--", "0"));
         }
 
         protected void DDTema_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +77,7 @@ namespace DiccionarioChino
                                 orderby p.Id
                                 select new
                                 {
+                                    p.Id,
                                     p.headword,
                                     p.pron,
                                     p.defn
@@ -84,27 +85,37 @@ namespace DiccionarioChino
                 GVpalabras.DataSource = palabras;
                 GVpalabras.DataBind();
             }
+
         }
 
-        //protected void GVpalabras_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        //protected void GVpalabras_OnRowCreated(object sender, GridViewRowEventArgs e)
         //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    //string c1 = "";
+        //    //string c2 = "";
+        //    //string c3 = "";
+        //    string js = null;
+        //    foreach (GridViewRow gridViewRow in GVpalabras.Rows)
         //    {
-        //        e.Row.Attributes["onclick"] =
-        //            Page.ClientScript.GetPostBackClientHyperlink(GVpalabras,
-        //        "Select$" + e.Row.RowIndex);
-        //        e.Row.Attributes["style"] = "cursor:pointer";
+        //        string c1 = GVpalabras.Rows[gridViewRow.RowIndex].Cells[0].Text;
+        //        string c2 = GVpalabras.Rows[gridViewRow.RowIndex].Cells[1].Text;
+        //        string c3 = GVpalabras.Rows[gridViewRow.RowIndex].Cells[2].Text;
+        //        js = "carga_palabras('" + c1 + "','" + c2 + "','" + c3 + "');";
+        //        break;
+        //    }
+        //    LinkButton myLinkButton = (LinkButton)e.Row.FindControl("link");
+        //    //string js = "carga_palabras('" + c1 + "','" + c2 + "','" + c3 + "');";
+        //    if (myLinkButton != null)
+        //    {
+        //        myLinkButton.Attributes.Add("onclick", js);
         //    }
         //}
-
-        //protected void GVpalabras_OnSelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    int index = GVpalabras.SelectedRow.RowIndex;
-        //    string name = GVpalabras.SelectedRow.Cells[0].Text;
-        //    string country = GVpalabras.SelectedRow.Cells[1].Text;
-        //    string message = "Row Index: " + index + "\\nName: " + name + "\\nCountry: " + country;
-        //    ClientScript.RegisterStartupScript(this.GetType(),"alert", "$(\"#mostrarpalabra\").modal()", true); 
-        //    //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
-        //}
+        protected void GVpalabras_OnRowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int n = Convert.ToInt32(e.CommandArgument);
+            Session["muestra"] = GVpalabras.Rows[n].Cells[3].Text;
+            Session["comando"] = "pl";
+            //Response.Write("<script>window.open('Detalle.aspx','_blank');</script>");
+            Response.Write("<script>window.open('Detalle.aspx', 'Timetable', 'width=557,height=347,toolbar=false, menubar=false, scrollbars=false, directories=false, resizable=false');</script>");
+        }
     }
 }

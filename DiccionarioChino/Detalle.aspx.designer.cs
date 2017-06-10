@@ -10,60 +10,51 @@
 namespace DiccionarioChino {
     
     
-    public partial class PSuplementarias {
+    public partial class Detalle {
         
         /// <summary>
-        /// Control formSuplementarias.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formSuplementarias;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control GVsuplementarias.
+        /// Control lbFoo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVsuplementarias;
+        protected global::System.Web.UI.WebControls.LinkButton lbFoo;
         
         /// <summary>
-        /// Control primero.
+        /// Control Lpalabra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton primero;
+        protected global::System.Web.UI.WebControls.Label Lpalabra;
         
         /// <summary>
-        /// Control anterior.
+        /// Control tbpron.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton anterior;
+        protected global::System.Web.UI.WebControls.TextBox tbpron;
         
         /// <summary>
-        /// Control siguiente.
+        /// Control Tbdef.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton siguiente;
-        
-        /// <summary>
-        /// Control ultimo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ultimo;
+        protected global::System.Web.UI.WebControls.TextBox Tbdef;
     }
 }
