@@ -570,7 +570,7 @@ a.bg-danger:hover {
 .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
 	color: #fff;
 	background-color: #30a5ff;
-}*/
+}
 
 .sidebar ul.nav ul,
 .sidebar ul.nav ul li {
@@ -928,12 +928,17 @@ h1.page-header {
 	height: 65px;
 	overflow: scroll;
 }
-
-
-
-
-
-
-
-
-
+/*--------------Mis estilos-------------*/
+.table-bordered > tbody > tr > td:first-child {
+    font-size: 23px;
+    font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
+}
+.table-bordered > tbody > tr > td:nth-child(1n+2) {
+    padding-top: 15px !important;
+}
+.table-bordered > tbody > tr > td:nth-child(4) {
+    display: none;
+}
+.table-bordered > tbody > tr > th:nth-child(4) {
+    display: none;
+}
