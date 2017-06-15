@@ -85,7 +85,6 @@ namespace DiccionarioChino
                 GVpalabras.DataSource = palabras;
                 GVpalabras.DataBind();
             }
-
         }
 
         //protected void GVpalabras_OnRowCreated(object sender, GridViewRowEventArgs e)

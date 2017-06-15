@@ -95,6 +95,7 @@
     <Content Include="js\jquery-1.11.1.min.js" />
     <Content Include="js\lumino.glyphs.js" />
     <Content Include="js\respond.min.js" />
+    <Content Include="Nueva.aspx" />
     <Content Include="packages.config" />
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
@@ -284,6 +285,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Nueva.aspx.cs">
+      <DependentUpon>Nueva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nueva.aspx.designer.cs">
+      <DependentUpon>Nueva.aspx</DependentUpon>
     </Compile>
     <Compile Include="Palabra.cs" />
     <Compile Include="Palabras.aspx.cs">

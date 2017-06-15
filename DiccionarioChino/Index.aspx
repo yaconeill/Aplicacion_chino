@@ -81,63 +81,25 @@
         </form>
         <ul class="nav menu">
             <li class="active"><a href="Index.aspx">
-                <svg class="glyph stroked dashboard-dial">
-                    <use xlink:href="#stroked-dashboard-dial"></use></svg>
+                <svg class="glyph stroked home">
+                    <use xlink:href="#stroked-home"></use></svg>
                 Inicio</a></li>
-            <li><a href="#">
-                <svg class="glyph stroked calendar">
-                    <use xlink:href="#stroked-calendar"></use></svg>
-                Widgets</a></li>
-            <li><a href="#">
-                <svg class="glyph stroked line-graph">
-                    <use xlink:href="#stroked-line-graph"></use></svg>
-                Charts</a></li>
-            <li><a href="#">
-                <svg class="glyph stroked table">
-                    <use xlink:href="#stroked-table"></use></svg>
-                Tables</a></li>
-            <li><a href="#">
-                <svg class="glyph stroked pencil">
-                    <use xlink:href="#stroked-pencil"></use></svg>
-                Forms</a></li>
-            <li><a href="#">
-                <svg class="glyph stroked app-window">
-                    <use xlink:href="#stroked-app-window"></use></svg>
-                Alerts &amp; Panels</a></li>
-            <li><a href="#">
+            <li><a href="Palabras.aspx">
                 <svg class="glyph stroked star">
                     <use xlink:href="#stroked-star"></use></svg>
-                Icons</a></li>
-            <li class="parent ">
-                <a href="#">
-                    <span data-toggle="collapse" href="#sub-item-1">
-                        <svg class="glyph stroked chevron-down">
-                            <use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown 
-                </a>
-                <ul class="children collapse" id="sub-item-1">
-                    <li>
-                        <a class="" href="#">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use></svg>
-                            Sub Item 1
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="#">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use></svg>
-                            Sub Item 2
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="#">
-                            <svg class="glyph stroked chevron-right">
-                                <use xlink:href="#stroked-chevron-right"></use></svg>
-                            Sub Item 3
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                Palabras Libro</a></li>
+            <li><a href="PSuplementarias.aspx">
+                <svg class="glyph stroked tag">
+                    <use xlink:href="#stroked-tag"></use></svg>
+                Suplementarias</a></li>
+            <li><a href="Plantilla.aspx">
+                <svg class="glyph stroked printer">
+                    <use xlink:href="#stroked-printer"></use></svg>
+                Exportar</a></li>
+            <li><a href="Nueva.aspx">
+                <svg class="glyph stroked plus">
+                    <use xlink:href="#stroked-plus-sign"></use></svg>
+                Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
             <li><a href="login.html">
                 <svg class="glyph stroked male-user">
@@ -154,10 +116,10 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="#">
+                <li><a href="Index.aspx">
                     <svg class="glyph stroked home">
                         <use xlink:href="#stroked-home"></use></svg></a></li>
-                <li class="active">Icons</li>
+                <li class="active">Inicio</li>
             </ol>
         </div>
         <!--/.row-->
@@ -175,15 +137,15 @@
                     <div class="panel panel-blue panel-widget ">
                         <div class="row no-padding">
                             <div class="col-sm-3 col-lg-5 widget-left">
-                                <svg class="glyph stroked eye">
-                                    <use xlink:href="#stroked-eye"/>
+                                <svg class="glyph stroked star">
+                                    <use xlink:href="#stroked-star" />
                                 </svg>
                             </div>
                             <div class="col-sm-9 col-lg-7 widget-right">
                                 <div class="large">
                                     <asp:Label runat="server" ID="PLibro"></asp:Label>
                                 </div>
-                                <div class="text-muted">Palabras del libro</div>
+                                <div class="text-muted">Libro</div>
                             </div>
                         </div>
                     </div>
@@ -194,8 +156,8 @@
                     <div class="panel panel-orange panel-widget">
                         <div class="row no-padding">
                             <div class="col-sm-3 col-lg-5 widget-left">
-                                <svg class="glyph stroked plus sign">
-                                    <use xlink:href="#stroked-plus-sign"/>
+                                <svg class="glyph stroked tag">
+                                    <use xlink:href="#stroked-tag" />
                                 </svg>
                             </div>
                             <div class="col-sm-9 col-lg-7 widget-right">
@@ -214,33 +176,35 @@
                         <div class="row no-padding">
                             <div class="col-sm-3 col-lg-5 widget-left">
                                 <svg class="glyph stroked printer">
-                                    <use xlink:href="#stroked-printer"/>
+                                    <use xlink:href="#stroked-printer" />
                                 </svg>
                             </div>
                             <div class="col-sm-9 col-lg-7 widget-right">
                                 <div class="large">
                                     <asp:Label runat="server" ID="Lplant"></asp:Label>
                                 </div>
-                                <div class="text-muted">Total de Palabras</div>
+                                <div class="text-muted">Total</div>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-xs-12 col-md-6 col-lg-3">
-                <div class="panel panel-red panel-widget">
-                    <div class="row no-padding">
-                        <div class="col-sm-3 col-lg-5 widget-left">
-                            <svg class="glyph stroked brush">
-                                <use xlink:href="#stroked-brush"/>
-                            </svg>
-                        </div>
-                        <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large"></div>
-                            <div class="text-muted">Agregar Nuevas</div>
+                <a href="Nueva.aspx">
+                    <div class="panel panel-red panel-widget">
+                        <div class="row no-padding">
+                            <div class="col-sm-3 col-lg-5 widget-left">
+                                <svg class="glyph stroked plus sign">
+                                    <use xlink:href="#stroked-plus-sign" />
+                                </svg>
+                            </div>
+                            <div class="col-sm-9 col-lg-7 widget-right">
+                                <div class="large"></div>
+                                <div class="text-muted">Agregar Nuevas</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <!--/.row-->

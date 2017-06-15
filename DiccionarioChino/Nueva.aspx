@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Palabras.aspx.cs" Inherits="DiccionarioChino.Palabras" EnableEventValidation="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Nueva.aspx.cs" Inherits="DiccionarioChino.Nueva" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Palabras del Libro</title>
+    <title>Agregar palabras</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
@@ -31,6 +31,13 @@
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">--%>
+    <style>
+        #tbpalabra {
+            font-size: 100px !important;
+            height: auto !important;
+            font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,7 +90,7 @@
                 <svg class="glyph stroked home">
                     <use xlink:href="#stroked-home"></use></svg>
                 Inicio</a></li>
-            <li class="active"><a href="Palabras.aspx">
+            <li><a href="Palabras.aspx">
                 <svg class="glyph stroked star">
                     <use xlink:href="#stroked-star"></use></svg>
                 Palabras Libro</a></li>
@@ -95,7 +102,7 @@
                 <svg class="glyph stroked printer">
                     <use xlink:href="#stroked-printer"></use></svg>
                 Exportar</a></li>
-            <li><a href="Nueva.aspx">
+            <li class="active"><a href="Nueva.aspx">
                 <svg class="glyph stroked plus">
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
@@ -118,14 +125,14 @@
                 <li><a href="Index.aspx">
                     <svg class="glyph stroked home">
                         <use xlink:href="#stroked-home"></use></svg></a></li>
-                <li class="active">Palabras Libro</li>
+                <li class="active">Agregar</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Palabras del libro</h1>
+                <h1 class="page-header">Agregar Palabras</h1>
             </div>
         </div>
         <!--/.row-->
@@ -134,54 +141,58 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <form runat="server" id="formPalabras">
-                        <div class="panel-heading">Mostrar Tabla</div>
-                        <div class="panel-body">
-                            <asp:DropDownList runat="server" ID="DDfuente" CssClass="form-control" AutoPostBack="True"
-                                OnSelectedIndexChanged="DDfuente_OnLoad">
-                            </asp:DropDownList>
-                            <asp:DropDownList runat="server" ID="DDTema" CssClass="form-control" AutoPostBack="True"
-                                OnSelectedIndexChanged="DDTema_OnSelectedIndexChanged">
-                            </asp:DropDownList><br />
-                            <div class="table-striped">
-                                <asp:GridView ID="GVpalabras" runat="server"
-                                    AutoGenerateColumns="False"
-                                    DataKeyNames="headword"
-                                    OnRowCommand="GVpalabras_OnRowCommand"
-                                    CssClass="table table-bordered bs-table text-center">
-                                    <Columns>
-                                        <asp:BoundField DataField="headword" HeaderText="Palabra"></asp:BoundField>
-                                        <asp:BoundField DataField="pron" HeaderText="Pronunciación"></asp:BoundField>
-                                        <asp:BoundField DataField="defn" HeaderText="Definición"></asp:BoundField>
-                                        <asp:BoundField DataField="id" HeaderText="Id"></asp:BoundField>
-                                        <asp:ButtonField ButtonType="Button" Text="Ver" CommandName="mostrar" />
-                                    </Columns>
-                                </asp:GridView>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="panel-heading">Formulario</div>
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <form runat="server" method="post" action="#" role="form">
+                                <div class="form-group">
+                                    <asp:Label runat="server">Palabra</asp:Label>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="tbpalabra"></asp:TextBox>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label runat="server">Pronunciación</asp:Label>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="tbpron"></asp:TextBox>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label runat="server">Definición</asp:Label>
+                                    <asp:TextBox runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" ID="tbdefn"></asp:TextBox>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick">Agregar</asp:LinkButton>
+                                    <%--                            <button type="submit" class="btn btn-primary">Agregar</button>--%>
+                                    <button type="reset" class="btn btn-default">Limpiar formulario</button>
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>
                 </div>
             </div>
+            <!-- /.col-->
         </div>
-        <!--/.row-->
+        <!-- /.row -->
+
     </div>
     <!--/.main-->
-    <%--    <script src="vendor/jquery/jquery.min.js"></script>
+    <!--/.main-->
+    <%--<script src="vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="vendor/raphael/raphael.min.js"></script>
+<script src="vendor/morrisjs/morris.min.js"></script>
+<script src="data/morris-data.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-    <script type="text/javascript" src="js/JavaScript.js"></script>--%>
+<!-- Custom Theme JavaScript -->
+<script src="dist/js/sb-admin-2.js"></script>
+<script type="text/javascript" src="js/JavaScript.js"></script>--%>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -190,22 +201,22 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script>
-                            $('#calendar').datepicker({
-                            });
+        $('#calendar').datepicker({
+        });
 
-                            !function ($) {
-                                $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                                    $(this).find('em:first').toggleClass("glyphicon-minus");
-                                });
-                                $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-                            }(window.jQuery);
+        !function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
 
-                            $(window).on('resize', function () {
-                                if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-                            })
-                            $(window).on('resize', function () {
-                                if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-                            })
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
     </script>
 </body>
 </html>

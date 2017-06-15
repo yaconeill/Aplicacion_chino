@@ -40,6 +40,15 @@ namespace DiccionarioChino {
         protected global::System.Web.UI.WebControls.DropDownList DDfuenteL;
         
         /// <summary>
+        /// Control DDTemaL.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DDTemaL;
+        
+        /// <summary>
         /// Control cantidad.
         /// </summary>
         /// <remarks>
@@ -67,13 +76,13 @@ namespace DiccionarioChino {
         protected global::System.Web.UI.WebControls.TextBox tbdesde;
         
         /// <summary>
-        /// Control tbhasta.
+        /// Control tbcant.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbhasta;
+        protected global::System.Web.UI.WebControls.TextBox tbcant;
         
         /// <summary>
         /// Control generar.
@@ -83,5 +92,14 @@ namespace DiccionarioChino {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton generar;
+        
+        /// <summary>
+        /// Control tbl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tbl;
     }
 }
