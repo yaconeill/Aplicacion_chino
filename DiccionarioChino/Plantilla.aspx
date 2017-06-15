@@ -191,16 +191,16 @@
                                 <asp:DropDownList runat="server" ID="DDTemaL" CssClass="form-control" AutoPostBack="True"
                                     OnSelectedIndexChanged="DDTemaL_OnSelectedIndexChanged">
                                 </asp:DropDownList><br />
-
+                                <asp:LinkButton runat="server" CssClass="btn btn-sm btn-success" ID="Gnralista" OnClick="Gnralista_OnClick">Generar</asp:LinkButton><br/>
                                 <asp:Panel runat="server" ID="cantidad">
                                     <asp:Label runat="server" ID="lbcantidad">Seleccionar candidad a mostrar</asp:Label><br />
                                     <asp:TextBox runat="server" ID="tbdesde" placeholder="Desde" size="5"></asp:TextBox>
                                     <asp:TextBox runat="server" ID="tbcant" placeholder="Candidad" size="5"></asp:TextBox>
-                                    <asp:LinkButton runat="server" ID="generar" OnClick="generar_OnClick">Generar</asp:LinkButton>
+                                    <asp:LinkButton runat="server" CssClass="btn btn-sm btn-success" ID="generar" OnClick="generar_OnClick">Generar</asp:LinkButton>
                                 </asp:Panel><br/>
                             </div>
                             <div class="text-center">
-                                <asp:Table ID="tbl" runat="server" />
+                                <asp:PlaceHolder ID="Place" runat="server" />
                             </div>
                         </div>
                     </form>

@@ -18,6 +18,7 @@ namespace DiccionarioChino
                 DDfuenteL.Visible = false;
                 DDTemaL.Visible = false;
                 cantidad.Visible = false;
+                Gnralista.Visible = false;
                 using (bdchino contexto = new bdchino())
                 {
                     var suple = (from s in contexto.PalabrasSuplementarias
@@ -109,11 +110,11 @@ namespace DiccionarioChino
         {
             cantidad.Visible = true;
             DDfuenteL.Visible = false;
+            Gnralista.Visible = false;
         }
 
         protected void generar_OnClick(object sender, EventArgs e)
         {
-            List<char> list = new List<char>();
             int dsd = 0, hasta = 0;
             if (tbdesde.Text != "")
             {
@@ -122,13 +123,13 @@ namespace DiccionarioChino
             }
             using (bdchino contexto = new bdchino())
             {
-                var suple = (from s in contexto.PalabrasSuplementarias
+                var palabra = (from s in contexto.PalabrasSuplementarias
                              orderby s.Id
                              select s).Skip(dsd).Take(hasta).ToList();
                 HtmlTable table1 = new HtmlTable();
-                for (int i = 0; i < suple.Count; i++)
+                for (int i = 0; i < palabra.Count; i++)
                 {
-                    var w = suple[i];
+                    var w = palabra[i];
                     char[] word = w.headword.ToCharArray();
 
                     table1.Border = 1;
@@ -150,28 +151,60 @@ namespace DiccionarioChino
                     }
                     table1.Rows.Add(row);
                 }
-                Controls.Add(table1);
+                Place.Controls.Add(table1);
             }
         }
 
         protected void DDTemaL_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            Gnralista.Visible = true;
+        }
+
+        protected void Gnralista_OnClick(object sender, EventArgs e)
+        {
             var tema = Convert.ToInt32(DDTemaL.SelectedItem.Value);
             using (bdchino contexto = new bdchino())
             {
-                var palabras = (from p in contexto.Palabras
-                                join tp in contexto.TemaPalabras
-                                on p.Id equals tp.IdPalabra
-                                where tp.IdTema == tema
-                                orderby p.Id
-                                select new
-                                {
-                                    p.Id,
-                                    p.headword,
-                                    p.pron,
-                                    p.defn
-                                }).ToList();
+                var palabra = (from p in contexto.Palabras
+                    join tp in contexto.TemaPalabras
+                    on p.Id equals tp.IdPalabra
+                    where tp.IdTema == tema
+                    orderby p.Id
+                    select new
+                    {
+                        p.Id,
+                        p.headword,
+                        p.pron,
+                        p.defn
+                    }).ToList();
+                HtmlTable table1 = new HtmlTable();
+                for (int i = 0; i < palabra.Count; i++)
+                {
+                    var w = palabra[i];
+                    char[] word = w.headword.ToCharArray();
+
+                    table1.Border = 1;
+                    HtmlTableRow row;
+                    HtmlTableCell cell;
+                    row = new HtmlTableRow();
+                    for (int j = 0; j < 10; j++)
+                    {
+                        cell = new HtmlTableCell();
+                        if (j > word.Length - 1)
+                        {
+                            cell.InnerHtml = " ";
+                        }
+                        else
+                        {
+                            cell.InnerHtml = word[j].ToString();
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    table1.Rows.Add(row);
+                }
+                Place.Controls.Add(table1);
             }
+
         }
     }
 }

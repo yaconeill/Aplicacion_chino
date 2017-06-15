@@ -49,6 +49,15 @@ namespace DiccionarioChino {
         protected global::System.Web.UI.WebControls.DropDownList DDTemaL;
         
         /// <summary>
+        /// Control Gnralista.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Gnralista;
+        
+        /// <summary>
         /// Control cantidad.
         /// </summary>
         /// <remarks>
@@ -94,12 +103,12 @@ namespace DiccionarioChino {
         protected global::System.Web.UI.WebControls.LinkButton generar;
         
         /// <summary>
-        /// Control tbl.
+        /// Control Place.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl;
+        protected global::System.Web.UI.WebControls.PlaceHolder Place;
     }
 }
