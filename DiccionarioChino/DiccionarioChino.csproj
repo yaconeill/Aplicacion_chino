@@ -81,6 +81,7 @@
     <Content Include="css\datepicker.css" />
     <Content Include="css\datepicker3.css" />
     <Content Include="css\styles.css" />
+    <Content Include="css\tabla.css" />
     <Content Include="Detalle.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="js\bootstrap-datepicker.js" />

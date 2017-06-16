@@ -3,75 +3,84 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
     <title>Exportar palabras</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/datepicker3.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/tabla.css" media="print" rel="stylesheet"/>
     <style>
-    h1 {
-        margin-top: 5px;
-        margin-bottom: 10px;
-        text-align: center;
-    }
+        h1 {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-    table {
-        margin-left: auto;
-        margin-right: auto;
-        border: 2px solid black;
-        border-collapse: separate;
-        width: 17cm;
-        padding: 0px;
-    }
+        .printable {
+            border: 1px dotted #CCCCCC;
+            padding: 10px 10px 10px 10px;
+        }
 
-    th {
-        border: 1px solid black;
-    }
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid black;
+            border-collapse: separate;
+            width: 17cm;
+            padding: 0px;
+        }
 
-    td {
-        background-image: url(fondo.png);
-        background-repeat: repeat-y;
-        background-size: 1.69cm 1.7cm;
-        background-position: -0.5px -0.9px;
-        border: 1px solid black;
-        text-align: center;
-        font-size: 44px;
-        font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi";
-        width: 57px;
-    }
+        th {
+            border: 1px solid black;
+        }
 
-    .pingying {
-        height: 1cm;
-    }
+        td {
+            background-image: url(../fondo.png);
+            background-repeat: repeat-y;
+            background-size: 1.69cm 1.7cm;
+            background-position: -0.5px -0.9px;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 44px;
+            font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi";
+            width: 57px;
+        }
 
-    .caracter {
-        height: 1.7cm;
-    }
+        .pingying {
+            height: 1cm;
+        }
 
-  </style>
+        .caracter {
+            height: 1.7cm;
+        }
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-
+    </style>
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
-    <%--    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">--%>
+    <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
+    <script type="text/javascript">
+        function showPopup() {
+            var myDiv = document.getElementById('printable');
+            var newWindow = window.open('', 'SecondWindow', 'toolbar=0,stat=0');
+            var style = newWindow.document.createElement('link');
+            style.type = "text/css";
+            style.rel = "stylesheet";
+            style.href = "css/tabla.css";
+            style.media = "all";
+            newWindow.document.write("<html><body " +
+                "class='responsive light2012-home-switcher home switcher' " +
+                " onload='window.print()'>" +
+                myDiv.innerHTML +
+                "</body></html>");
+            newWindow.document.getElementsByTagName("head")[0].appendChild(style);
+            newWindow.document.close();
+        }
+    </script>
 </head>
 
 <body>
@@ -116,7 +125,7 @@
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <form role="search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+                <asp:TextBox CssClass="form-control" ID="tbbusq" placeholder="Search" runat="server" OnDataBinding="Busqueda"/>
             </div>
         </form>
         <ul class="nav menu">
@@ -148,7 +157,7 @@
         </ul>
         <div class="attribution">
             Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br />
-            <a href="http://www.glyphs.co" style="        color: #333;">Icons by Glyphs</a>
+            <a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a>
         </div>
     </div>
     <!--/.sidebar-->
@@ -171,11 +180,10 @@
         </div>
         <!--/.row-->
 
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <form runat="server" action="Plantilla.aspx" method="post">
+        <form runat="server" action="Plantilla.aspx" method="post">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
                         <div class="panel-heading">Mostrar Tabla</div>
                         <div class="panel-body">
                             <div>
@@ -191,108 +199,40 @@
                                 <asp:DropDownList runat="server" ID="DDTemaL" CssClass="form-control" AutoPostBack="True"
                                     OnSelectedIndexChanged="DDTemaL_OnSelectedIndexChanged">
                                 </asp:DropDownList><br />
-                                <asp:LinkButton runat="server" CssClass="btn btn-sm btn-success" ID="Gnralista" OnClick="Gnralista_OnClick">Generar</asp:LinkButton><br/>
+                                <asp:LinkButton runat="server" CssClass="btn btn-sm btn-success" ID="Gnralista" OnClick="Gnralista_OnClick">Generar</asp:LinkButton><br />
                                 <asp:Panel runat="server" ID="cantidad">
                                     <asp:Label runat="server" ID="lbcantidad">Seleccionar candidad a mostrar</asp:Label><br />
                                     <asp:TextBox runat="server" ID="tbdesde" placeholder="Desde" size="5"></asp:TextBox>
                                     <asp:TextBox runat="server" ID="tbcant" placeholder="Candidad" size="5"></asp:TextBox>
                                     <asp:LinkButton runat="server" CssClass="btn btn-sm btn-success" ID="generar" OnClick="generar_OnClick">Generar</asp:LinkButton>
-                                </asp:Panel><br/>
+                                </asp:Panel>
+                                <br />
                             </div>
-                            <div class="text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.row-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <%--<input type="button" id="btnPrint" value="Print" />--%>
+                            <asp:LinkButton type="button" OnClientClick="showPopup();" class="btn btn-sm btn-primary glyphicon pull-left" runat="server" ID="btprint"><svg class="glyph stroked printer"><use xlink:href="#stroked-printer"/></svg>Imprimir</asp:LinkButton>
+                        </div>
+                        <div class="panel-body center-block">
+                            <div class="text-center" id="printable">
+                                <asp:Label runat="server" ID="lbfuente"></asp:Label>
                                 <asp:PlaceHolder ID="Place" runat="server" />
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--/.row-->
-        <%--        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Basic Table</div>
-                    <div class="panel-body">
-                        <table data-toggle="table" data-url="tables/data2.json">
-                            <thead>
-                                <tr>
-                                    <th data-field="id" data-align="right">Item ID</th>
-                                    <th data-field="name">Item Name</th>
-                                    <th data-field="price">Item Price</th>
-                                </tr>
-                            </thead>
-                        </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Styled Table</div>
-                    <div class="panel-body">
-                        <table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-                            <thead>
-                                <tr>
-                                    <th data-field="id" data-align="right">Item ID</th>
-                                    <th data-field="name">Item Name</th>
-                                    <th data-field="price">Item Price</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <script>
-                            $(function () {
-                                $('#hover, #striped, #condensed').click(function () {
-                                    var classes = 'table';
-
-                                    if ($('#hover').prop('checked')) {
-                                        classes += ' table-hover';
-                                    }
-                                    if ($('#condensed').prop('checked')) {
-                                        classes += ' table-condensed';
-                                    }
-                                    $('#table-style').bootstrapTable('destroy')
-                                        .bootstrapTable({
-                                            classes: classes,
-                                            striped: $('#striped').prop('checked')
-                                        });
-                                });
-                            });
-
-                            function rowStyle(row, index) {
-                                var classes = ['active', 'success', 'info', 'warning', 'danger'];
-
-                                if (index % 2 === 0 && index / 2 < classes.length) {
-                                    return {
-                                        classes: classes[index / 2]
-                                    };
-                                }
-                                return {};
-                            }
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>--%>
-        <!--/.row-->
-
-
+            <!--/.row-->
+        </form>
     </div>
     <!--/.main-->
-    <%--    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-    <script type="text/javascript" src="js/JavaScript.js"></script>--%>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -300,23 +240,23 @@
     <script src="js/easypiechart.js"></script>
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
-    <script>
-                        $('#calendar').datepicker({
-                        });
+    <%--    <script>
+        $('#calendar').datepicker({
+        });
 
-                        !function ($) {
-                            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                                $(this).find('em:first').toggleClass("glyphicon-minus");
-                            });
-                            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-                        }(window.jQuery);
+        !function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
 
-                        $(window).on('resize', function () {
-                            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-                        })
-                        $(window).on('resize', function () {
-                            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-                        })
-    </script>
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>--%>
 </body>
 </html>
