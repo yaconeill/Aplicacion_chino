@@ -95,6 +95,7 @@ namespace DiccionarioChino
         protected void generar_OnClick(object sender, EventArgs e)
         {
             int dsd = 0, hasta = 0;
+            char[] tonos = { '1', '2', '3', '4', '5' };
             if (tbdesde.Text != "")
             {
                 dsd = Convert.ToInt32(tbdesde.Text);
@@ -110,24 +111,33 @@ namespace DiccionarioChino
                 {
                     var w = palabra[i];
                     char[] word = w.headword.ToCharArray();
+                    string[] pron = w.pron.Split(tonos);
 
                     table1.Border = 1;
                     HtmlTableRow row;
                     HtmlTableCell cell;
+                    HtmlTableRow row_ping;
+                    HtmlTableCell cell_ping;
                     row = new HtmlTableRow();
+                    row_ping = new HtmlTableRow();
                     for (int j = 0; j < 10; j++)
                     {
                         cell = new HtmlTableCell();
+                        cell_ping = new HtmlTableCell();
                         if (j > word.Length - 1)
                         {
                             cell.InnerHtml = " ";
+                            cell_ping.InnerHtml = " ";
                         }
                         else
                         {
+                            cell_ping.InnerHtml = pron[j];
                             cell.InnerHtml = word[j].ToString();
                         }
+                        row_ping.Cells.Add(cell_ping);
                         row.Cells.Add(cell);
                     }
+                    table1.Rows.Add(row_ping);
                     table1.Rows.Add(row);
                 }
                 Place.Controls.Add(table1);
@@ -143,6 +153,7 @@ namespace DiccionarioChino
         protected void Gnralista_OnClick(object sender, EventArgs e)
         {
             var tema = Convert.ToInt32(DDTemaL.SelectedItem.Value);
+            char[] tonos = { '1', '2', '3', '4', '5' };
             lbfuente.Text = "Tema " + tema;
             using (bdchino contexto = new bdchino())
             {
@@ -162,45 +173,64 @@ namespace DiccionarioChino
                 for (int i = 0; i < palabra.Count; i++)
                 {
                     var w = palabra[i];
-                    char[] word = w.headword.ToCharArray();
+                    List<char> word = w.headword.ToCharArray().ToList();
+                    List<string> pron = w.pron.Trim().Split(tonos).ToList();
+                    foreach (char c in word.Reverse<char>())
+                    {
+                        if (c == ' ')
+                        {
+                            word.Remove(c);
+                        }
+                        if (c == '(' || c == ')')
+                        {
+                            word.Remove(c);
+                        }
+                    }
+                    foreach (string c in pron.Reverse<string>())
+                    {
+                        if (c == " ")
+                        {
+                            pron.Remove(c);
+                        }
+                        if (c == ")")
+                        {
+                            pron.Remove(c);
+                        }
+                    }
 
                     table1.Border = 1;
                     HtmlTableRow row;
                     HtmlTableCell cell;
+                    HtmlTableRow row_ping;
+                    HtmlTableCell cell_ping;
                     row = new HtmlTableRow();
+                    row_ping = new HtmlTableRow();
                     for (int j = 0; j < 10; j++)
                     {
+                        cell_ping = new HtmlTableCell();
                         cell = new HtmlTableCell();
-                        if (j > word.Length - 1)
+                        if (j > word.Count - 1)
                         {
+                            cell_ping.InnerHtml = " ";
                             cell.InnerHtml = " ";
                         }
                         else
                         {
                             cell.InnerHtml = word[j].ToString();
                         }
+                        if (j < pron.Count)
+                        {
+                            cell_ping.InnerHtml = pron[j].Trim();
+                        }
+                        row_ping.Cells.Add(cell_ping);
                         row.Cells.Add(cell);
                     }
+                    table1.Rows.Add(row_ping);
                     table1.Rows.Add(row);
                 }
                 Place.Controls.Add(table1);
             }
             btprint.Visible = true;
         }
-
-        //protected void Busqueda(object sender, EventArgs e)
-        //{
-        //    var p = "'%'" + tbbusq.Text + "'%'";
-        //    using (bdchino contexto = new bdchino())
-        //    {
-        //        var lib = (from l in contexto.Palabras
-        //                    where (l.headword.Contains(p) || (l.pron.Contains(p)))
-        //                    select l).ToList();
-        //        var sup = (from l in contexto.PalabrasSuplementarias
-        //            where (l.headword.Contains(p) || (l.pron.Contains(p)))
-        //            select l).ToList();
-                
-        //    }
-        //}
     }
 }

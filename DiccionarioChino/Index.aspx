@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="Index.aspx"><span>BD</span> Palabras en Chino</a>
-                <ul class="user-menu">
+<%--                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
@@ -52,7 +52,7 @@
                                 Logout</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul>--%>
             </div>
 
         </div>
@@ -87,10 +87,10 @@
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a href="login.html">
+<%--            <li><a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xlink:href="#stroked-male-user"></use></svg>
-                Login Page</a></li>
+                Login Page</a></li>--%>
         </ul>
         <div class="attribution">
             Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br />

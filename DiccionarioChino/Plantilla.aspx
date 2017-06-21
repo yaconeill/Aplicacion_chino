@@ -38,7 +38,7 @@
         th {
             border: 1px solid black;
         }
-
+        
         td {
             background-image: url(../fondo.png);
             background-repeat: repeat-y;
@@ -49,6 +49,11 @@
             font-size: 44px;
             font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi";
             width: 57px;
+        }
+
+        tr:nth-child(odd) td{
+            background-image: none !important;
+            font-size: 14px !important;
         }
 
         .pingying {
@@ -94,7 +99,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="Index.aspx"><span>BD</span> Palabras en Chino</a>
-                <ul class="user-menu">
+<%--                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
@@ -115,7 +120,7 @@
                                 Logout</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul>--%>
             </div>
 
         </div>
@@ -125,7 +130,7 @@
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <form role="search">
             <div class="form-group">
-                <asp:TextBox CssClass="form-control" ID="tbbusq" placeholder="Search" runat="server" OnDataBinding="Busqueda"/>
+                <input class="form-control" placeholder="Search" runat="server"/>
             </div>
         </form>
         <ul class="nav menu">
@@ -150,10 +155,10 @@
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a href="login.html">
+<%--            <li><a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xlink:href="#stroked-male-user"></use></svg>
-                Login Page</a></li>
+                Login Page</a></li>--%>
         </ul>
         <div class="attribution">
             Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br />

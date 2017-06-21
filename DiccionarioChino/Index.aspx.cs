@@ -17,16 +17,23 @@ namespace DiccionarioChino
             }
             using (bdchino contexto = new bdchino())
             {
-                var plibro = (from p in contexto.Palabras
-                              orderby p.Id
-                              select p.headword).ToList();
-                var psuple = (from p in contexto.PalabrasSuplementarias
-                              orderby p.Id
-                              select p.headword).ToList();
+                try
+                {
+                    var plibro = (from p in contexto.Palabras
+                                  orderby p.Id
+                                  select p.headword).ToList();
+                    var psuple = (from p in contexto.PalabrasSuplementarias
+                                  orderby p.Id
+                                  select p.headword).ToList();
 
-                PLibro.Text = (plibro.Count - 1).ToString();
-                PSuple.Text = (psuple.Count - 1).ToString();
-                Lplant.Text = ((plibro.Count - 1) + (psuple.Count - 1)).ToString();
+                    PLibro.Text = (plibro.Count - 1).ToString();
+                    PSuple.Text = (psuple.Count - 1).ToString();
+                    Lplant.Text = ((plibro.Count - 1) + (psuple.Count - 1)).ToString();
+                }
+                catch (Exception)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Aviso", "alert('No se ha podido conectar con la base de datos');", true);
+                }
             }
         }
     }

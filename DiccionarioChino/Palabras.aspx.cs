@@ -19,7 +19,7 @@ namespace DiccionarioChino
                     try
                     {
                         var fuente = (from f in contexto.Fuentes
-                                      where (f.Id >= 1 && f.Id <= 2)
+                                      where (f.Id >= 1 && f.Id <= 3)
                                       orderby f.Id
                                       select f).ToList();
                         DDfuente.DataSource = fuente;

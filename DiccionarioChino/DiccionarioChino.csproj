@@ -41,6 +41,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="bdchino-Implementación" Order="1">
+          <Destination Path="Data Source=hp-laptop-yaco\sqlexpress%3bInitial Catalog=BdChino%3bIntegrated Security=True" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=HP-LAPTOP-YACO\SQLEXPRESS%3bInitial Catalog=BdChino%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\bdchino-Implementación_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -93,6 +107,7 @@
     <Content Include="js\easypiechart-data.js" />
     <Content Include="js\easypiechart.js" />
     <Content Include="js\html5shiv.min.js" />
+    <Content Include="js\JavaScript.js" />
     <Content Include="js\jquery-1.11.1.min.js" />
     <Content Include="js\lumino.glyphs.js" />
     <Content Include="js\respond.min.js" />
@@ -102,7 +117,6 @@
     <Content Include="less\sb-admin-2.less" />
     <Content Include="less\variables.less" />
     <Content Include="Plantilla.aspx" />
-    <Content Include="tabla.html" />
     <Content Include="vendor\bootstrap-social\bootstrap-social.less" />
     <Content Include="vendor\bootstrap-social\bootstrap-social.scss" />
     <Content Include="vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -156,6 +170,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="tables\data1.json" />
     <Content Include="tables\data2.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,23 +14,14 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
-    <%--    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">--%>
+    <style>
+        #d_headword {
+            font-size: 60px;
+            font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,7 +35,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="Index.aspx"><span>BD</span> Palabras en Chino</a>
-                <ul class="user-menu">
+<%--                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
@@ -65,7 +56,7 @@
                                 Logout</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul>--%>
             </div>
 
         </div>
@@ -100,10 +91,10 @@
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a href="login.html">
+<%--            <li><a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xlink:href="#stroked-male-user"></use></svg>
-                Login Page</a></li>
+                Login Page</a></li>--%>
         </ul>
         <div class="attribution">
             Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br />
@@ -150,11 +141,15 @@
                                     OnRowCommand="GVpalabras_OnRowCommand"
                                     CssClass="table table-bordered bs-table text-center">
                                     <Columns>
-                                        <asp:BoundField DataField="headword" HeaderText="Palabra"></asp:BoundField>
-                                        <asp:BoundField DataField="pron" HeaderText="Pronunciación"></asp:BoundField>
-                                        <asp:BoundField DataField="defn" HeaderText="Definición"></asp:BoundField>
-                                        <asp:BoundField DataField="id" HeaderText="Id"></asp:BoundField>
-                                        <asp:ButtonField ButtonType="Button" Text="Ver" CommandName="mostrar" />
+                                        <asp:BoundField DataField="headword" ItemStyle-CssClass="headword" HeaderText="Palabra"></asp:BoundField>
+                                        <asp:BoundField DataField="pron" ItemStyle-CssClass="pron" HeaderText="Pronunciación"></asp:BoundField>
+                                        <asp:BoundField DataField="defn" ItemStyle-CssClass="defn" HeaderText="defn"></asp:BoundField>
+                                        <asp:BoundField DataField="id" ItemStyle-CssClass="id" HeaderText="Id"></asp:BoundField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" ID="lnkView" CssClass="btn btn-primary btn-xs"><span class="glyphicon glyphicon-zoom-in"></span></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -164,48 +159,60 @@
             </div>
         </div>
         <!--/.row-->
+        <!----Modal--->
+        <div class="modal fade" id="detalle" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div id="dialog" style="display: none">
+                        <%--<b>Palabra</b>--%>
+                        <span id="d_headword"></span>
+                        <%--<input type="text" class="form-control text-center" id="d_headword" name="d_headword" />--%>
+                        <div class="">
+                            <b>Pronunciación:</b><br/>
+                            <span id="d_pron" class="text-center"></span>
+                            <%--<input type="text" class="form-control text-center" id="d_pron" name="d_pron" />--%>
+                        </div>
+                        <b>Definición:</b><br/>
+                        <span id="d_defn"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/modal----->
     </div>
     <!--/.main-->
-    <%--    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-    <script type="text/javascript" src="js/JavaScript.js"></script>--%>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/chart.min.js"></script>
+<%--    <script src="js/chart.min.js"></script>
     <script src="js/chart-data.js"></script>
     <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
+    <script src="js/easypiechart-data.js"></script>--%>
     <script src="js/bootstrap-datepicker.js"></script>
-    <script>
-                            $('#calendar').datepicker({
-                            });
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css"
+      rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).on("click", "[id*=lnkView]", function () {
+        $("#d_headword").html($(".headword", $(this).closest("tr")).html());
+        $("#d_pron").html($(".pron", $(this).closest("tr")).html());
+        $("#d_defn").html($(".defn", $(this).closest("tr")).html());
+        $("#dialog").dialog({
+            title: "Ver detalle",
+            buttons: {
+                Ok: function () {
+                    $(this).dialog('close');
+                }
+            },
+            modal: true
+        });
+        return false;
+    });
+</script>
 
-                            !function ($) {
-                                $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                                    $(this).find('em:first').toggleClass("glyphicon-minus");
-                                });
-                                $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-                            }(window.jQuery);
-
-                            $(window).on('resize', function () {
-                                if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-                            })
-                            $(window).on('resize', function () {
-                                if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-                            })
-    </script>
 </body>
 </html>

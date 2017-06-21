@@ -17,7 +17,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     border: 2px solid black;
-    border-collapse: separate;
+    border-collapse: collapse;
     width: 17cm;
     padding: 0px;
 }
@@ -26,10 +26,18 @@ th {
     border: 1px solid black;
 }
 
+tr:nth-child(odd) td {
+    background-image: none !important;
+    font-size: 14px !important;
+    height: 20px;
+}
+#lbfuente {
+    padding-left: 30px;
+}
 td {
     background-image: url(../fondo.png);
     background-repeat: repeat-y;
-    background-size: 1.58cm 1.5cm;
+    background-size: 1.69cm 1.5cm;
     background-position: 0px 0px;
     border: 1px solid black;
     text-align: center;
@@ -38,6 +46,7 @@ td {
     width: 57px;
     height: 57px;
 }
+
 
 .pingying {
     height: 1cm;

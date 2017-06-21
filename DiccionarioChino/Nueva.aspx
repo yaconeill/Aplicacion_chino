@@ -17,25 +17,15 @@
 
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
-    <%--    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">--%>
     <style>
-        #tbpalabra {
+        #palabra {
             font-size: 100px !important;
             height: auto !important;
             font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
+        }
+        .txbpalabra {
+            font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
+            font-size: 22px;
         }
     </style>
 </head>
@@ -51,7 +41,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="Index.aspx"><span>BD</span> Palabras en Chino</a>
-                <ul class="user-menu">
+<%--                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
@@ -72,7 +62,7 @@
                                 Logout</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul>--%>
             </div>
 
         </div>
@@ -107,10 +97,10 @@
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a href="login.html">
+<%--            <li><a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xlink:href="#stroked-male-user"></use></svg>
-                Login Page</a></li>
+                Login Page</a></li>--%>
         </ul>
         <div class="attribution">
             Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br />
@@ -136,37 +126,84 @@
             </div>
         </div>
         <!--/.row-->
-
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Formulario</div>
                     <div class="panel-body">
-                        <div class="col-md-6">
-                            <form runat="server" method="post" action="#" role="form">
-                                <div class="form-group">
-                                    <asp:Label runat="server">Palabra</asp:Label>
-                                    <asp:TextBox runat="server" CssClass="form-control" ID="tbpalabra"></asp:TextBox>
-                                </div>
+                        <div class="">
+                            <div class="panel panel-default">
+                                <div class="panel-body tabs">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tab1" data-toggle="tab">Agrear varias</a></li>
+                                        <li><a href="#tab2" data-toggle="tab">Agregar una</a></li>
+                                    </ul>
+                                    <form runat="server" method="post" action="#" role="form">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade in active" id="tab1">
+                                                <%--<h4></h4>--%>
+                                                <asp:GridView ID="GVmassadd" runat="server" 
+                                                    CssClass="table" ShowFooter="true" 
+                                                    AutoGenerateColumns="false">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="RowNumber" HeaderText="" />
+                                                        <asp:TemplateField HeaderText="Palabra">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox runat="server" CssClass="form-control txbpalabra" ng-model="name" ID="txbpalabra"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Pronunciación">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox runat="server" CssClass="form-control" ID="txbpron"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Definición">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox runat="server" CssClass="form-control" ID="txbdefn"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <FooterStyle HorizontalAlign="Right" />
+                                                            <FooterTemplate>
+                                                                <asp:LinkButton ID="ButtonAdd" OnClick="ButtonAdd_OnClick" runat="server" Text="Agregar fila" CssClass="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
+                                                            </FooterTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                                <div class="col-md-6">
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="Masivo" OnClick="Masivo_OnClick">Enviar</asp:LinkButton>
+                                                    <button type="reset" class="btn btn-default">Limpiar formulario</button>
+                                                </div>
 
-                                <div class="form-group">
-                                    <asp:Label runat="server">Pronunciación</asp:Label>
-                                    <asp:TextBox runat="server" CssClass="form-control" ID="tbpron"></asp:TextBox>
-                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab2">
+                                                <%--<h4></h4>--%>
+                                                <div class="form-group" ng-app="">
+                                                    <asp:Label runat="server">Palabra</asp:Label>
+                                                    <p id="palabra"  ng-bind="name" class="text-center"></p>
+                                                    <asp:TextBox runat="server" CssClass="form-control" ng-model="name" ID="tbpalabra"></asp:TextBox>
+                                                </div>
 
-                                <div class="form-group">
-                                    <asp:Label runat="server">Definición</asp:Label>
-                                    <asp:TextBox runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" ID="tbdefn"></asp:TextBox>
-                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server">Pronunciación</asp:Label>
+                                                    <asp:TextBox runat="server" CssClass="form-control" ID="tbpron"></asp:TextBox>
+                                                </div>
 
-                                <div class="col-md-6">
-                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick">Agregar</asp:LinkButton>
-                                    <%--                            <button type="submit" class="btn btn-primary">Agregar</button>--%>
-                                    <button type="reset" class="btn btn-default">Limpiar formulario</button>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server">Definición</asp:Label>
+                                                    <asp:TextBox runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" ID="tbdefn"></asp:TextBox>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick">Agregar</asp:LinkButton>
+                                                    <button type="reset" class="btn btn-default">Limpiar formulario</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>                        
+                            </div>
+                            <!--/.panel-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,22 +214,6 @@
     </div>
     <!--/.main-->
     <!--/.main-->
-    <%--<script src="vendor/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="vendor/metisMenu/metisMenu.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="vendor/raphael/raphael.min.js"></script>
-<script src="vendor/morrisjs/morris.min.js"></script>
-<script src="data/morris-data.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="dist/js/sb-admin-2.js"></script>
-<script type="text/javascript" src="js/JavaScript.js"></script>--%>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -200,23 +221,6 @@
     <script src="js/easypiechart.js"></script>
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
-    <script>
-        $('#calendar').datepicker({
-        });
-
-        !function ($) {
-            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
-
-        $(window).on('resize', function () {
-            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function () {
-            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </body>
 </html>

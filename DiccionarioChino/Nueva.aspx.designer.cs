@@ -13,6 +13,24 @@ namespace DiccionarioChino {
     public partial class Nueva {
         
         /// <summary>
+        /// Control GVmassadd.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVmassadd;
+        
+        /// <summary>
+        /// Control Masivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Masivo;
+        
+        /// <summary>
         /// Control tbpalabra.
         /// </summary>
         /// <remarks>

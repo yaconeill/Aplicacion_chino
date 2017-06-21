@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,11 +51,17 @@ namespace DiccionarioChino
             }
             else if (sk >= Convert.ToInt32(size))
             {
-                if (!size.EndsWith("0"))
+                var prp = size.Substring(size.Length - 1,1);
+                if (Convert.ToInt32(prp) < 10)
                 {
-                    sk = Convert.ToInt32(size) - 10;
+                    sk = Convert.ToInt32(size) - Convert.ToInt32(prp);
                     Session["sk"] = sk;
                 }
+                //if (!size.EndsWith("0"))
+                //{
+                //    sk = Convert.ToInt32(size) - 10;
+                //    Session["sk"] = sk;
+                //}
             }
             using (bdchino contexto = new bdchino())
             {

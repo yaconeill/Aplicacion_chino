@@ -17,20 +17,12 @@
 
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
-    <%--    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">--%>
+    <style>
+        #d_headword {
+            font-size: 60px;
+            font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,7 +36,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="Index.aspx"><span>BD</span> Palabras en Chino</a>
-                <ul class="user-menu">
+<%--                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
@@ -65,7 +57,7 @@
                                 Logout</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul>--%>
             </div>
 
         </div>
@@ -100,10 +92,10 @@
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a href="login.html">
+<%--            <li><a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xlink:href="#stroked-male-user"></use></svg>
-                Login Page</a></li>
+                Login Page</a></li>--%>
         </ul>
         <div class="attribution">
             Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br />
@@ -140,14 +132,17 @@
                             <asp:GridView ID="GVsuplementarias" runat="server"
                                 AutoGenerateColumns="False"
                                 DataKeyNames="headword"
-                                OnRowCommand="GVsuplementarias_OnRowCommand"
                                 CssClass="table table-bordered bs-table text-center">
                                 <Columns>
-                                    <asp:BoundField DataField="headword" HeaderText="Palabra"></asp:BoundField>
-                                    <asp:BoundField DataField="pron" HeaderText="Pronunciación"></asp:BoundField>
-                                    <asp:BoundField DataField="defn" HeaderText="Definición"></asp:BoundField>
-                                    <asp:BoundField DataField="id" HeaderText="Id"></asp:BoundField>
-                                    <asp:ButtonField ButtonType="Button" Text="Ver" CommandName="mostrar" />
+                                    <asp:BoundField DataField="headword" ItemStyle-CssClass="headword" HeaderText="Palabra"></asp:BoundField>
+                                    <asp:BoundField DataField="pron" ItemStyle-CssClass="pron" HeaderText="Pronunciación"></asp:BoundField>
+                                    <asp:BoundField DataField="defn" ItemStyle-CssClass="defn" HeaderText="defn"></asp:BoundField>
+                                    <asp:BoundField DataField="id" ItemStyle-CssClass="id" HeaderText="Id"></asp:BoundField>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" ID="lnkView" CssClass="btn btn-primary btn-xs"><span class="glyphicon glyphicon-zoom-in"></span></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
                             <div class="btn-group-sm text-center">
@@ -157,131 +152,62 @@
                                 <asp:LinkButton runat="server" OnClick="ultimo_OnClick" ID="ultimo" CssClass="btn btn-info"><i class="glyphicon glyphicon-step-forward" aria-hidden="true"></i></asp:LinkButton>
 
                             </div>
-                            <%--                    <table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-                        <thead>
-                        <tr>
-                            <th data-field="state" data-checkbox="true" >Item ID</th>
-                            <th data-field="id" data-sortable="true">Item ID</th>
-                            <th data-field="name"  data-sortable="true">Item Name</th>
-                            <th data-field="price" data-sortable="true">Item Price</th>
-                        </tr>
-                        </thead>
-                    </table>--%>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <!--/.row-->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Basic Table</div>
-                    <div class="panel-body">
-                        <table data-toggle="table" data-url="tables/data2.json">
-                            <thead>
-                                <tr>
-                                    <th data-field="id" data-align="right">Item ID</th>
-                                    <th data-field="name">Item Name</th>
-                                    <th data-field="price">Item Price</th>
-                                </tr>
-                            </thead>
-                        </table>
+        <!---modal--->
+        <div class="modal fade" id="detalle" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div id="dialog" style="display: none">
+                            <%--<b>Palabra</b>--%>
+                            <span id="d_headword"></span>
+                            <%--<input type="text" class="form-control text-center" id="d_headword" name="d_headword" />--%>
+                        <div class="">
+                            <b>Pronunciación:</b><br/>
+                            <span id="d_pron"></span>
+                            <%--<input type="text" class="form-control text-center" id="d_pron" name="d_pron" />--%>
+                        </div>
+                            <b>Definición:</b><br/>
+                            <span id="d_defn"></span>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Styled Table</div>
-                    <div class="panel-body">
-                        <table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-                            <thead>
-                                <tr>
-                                    <th data-field="id" data-align="right">Item ID</th>
-                                    <th data-field="name">Item Name</th>
-                                    <th data-field="price">Item Price</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <script>
-                            $(function () {
-                                $('#hover, #striped, #condensed').click(function () {
-                                    var classes = 'table';
 
-                                    if ($('#hover').prop('checked')) {
-                                        classes += ' table-hover';
-                                    }
-                                    if ($('#condensed').prop('checked')) {
-                                        classes += ' table-condensed';
-                                    }
-                                    $('#table-style').bootstrapTable('destroy')
-                                        .bootstrapTable({
-                                            classes: classes,
-                                            striped: $('#striped').prop('checked')
-                                        });
-                                });
-                            });
-
-                            function rowStyle(row, index) {
-                                var classes = ['active', 'success', 'info', 'warning', 'danger'];
-
-                                if (index % 2 === 0 && index / 2 < classes.length) {
-                                    return {
-                                        classes: classes[index / 2]
-                                    };
-                                }
-                                return {};
-                            }
-                        </script>
-                    </div>
-                </div>
             </div>
         </div>
-        <!--/.row-->
-
-
+        <!--/-modal--->
     </div>
     <!--/.main-->
-    <%--<script src="vendor/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="vendor/metisMenu/metisMenu.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="vendor/raphael/raphael.min.js"></script>
-<script src="vendor/morrisjs/morris.min.js"></script>
-<script src="data/morris-data.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="dist/js/sb-admin-2.js"></script>
-<script type="text/javascript" src="js/JavaScript.js"></script>--%>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/chart.min.js"></script>
-    <script src="js/chart-data.js"></script>
-    <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
-    <script>
-                            $('#calendar').datepicker({
-                            });
-
-                            !function ($) {
-                                $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                                    $(this).find('em:first').toggleClass("glyphicon-minus");
-                                });
-                                $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-                            }(window.jQuery);
-
-                            $(window).on('resize', function () {
-                                if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-                            })
-                            $(window).on('resize', function () {
-                                if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-                            })
+    <script type="text/javascript" src="js/JavaScript.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).on("click", "[id*=lnkView]", function () {
+            $("#d_headword").html($(".headword", $(this).closest("tr")).html());
+            $("#d_pron").html($(".pron", $(this).closest("tr")).html());
+            $("#d_defn").html($(".defn", $(this).closest("tr")).html());
+            $("#dialog").dialog({
+                title: "View Details",
+                buttons: {
+                    Ok: function () {
+                        $(this).dialog('close');
+                    }
+                },
+                modal: true
+            });
+            return false;
+        });
     </script>
 </body>
 </html>

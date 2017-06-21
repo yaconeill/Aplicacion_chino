@@ -13,15 +13,6 @@ namespace DiccionarioChino {
     public partial class Plantilla {
         
         /// <summary>
-        /// Control tbbusq.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbbusq;
-        
-        /// <summary>
         /// Control rblibro.
         /// </summary>
         /// <remarks>
