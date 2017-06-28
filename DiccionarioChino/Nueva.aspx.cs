@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace DiccionarioChino
 {
     public partial class Nueva : System.Web.UI.Page
     {
+        /// <summary>
+        /// Booleano que se utiliza para una vez se han guardado los datos, estando en true, 
+        /// entra en un condicional para mostrar un mensaje
+        /// </summary>
         private bool _ok;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,11 @@ namespace DiccionarioChino
                 SetInitialRow();
             }
         }
-
+        /// <summary>
+        /// Guarda en la base de datos los campos de la pestaña para agregar una palabra
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void OnClick(object sender, EventArgs e)
         {
             using (bdchino contexto = new bdchino())
@@ -38,6 +42,9 @@ namespace DiccionarioChino
                 }
             }
         }
+        /// <summary>
+        /// Genera la primera fila de textbox dentro de un gridview.
+        /// </summary>
         private void SetInitialRow()
         {
             DataTable dt = new DataTable();
@@ -60,6 +67,9 @@ namespace DiccionarioChino
             GVmassadd.DataSource = dt;
             GVmassadd.DataBind();
         }
+        /// <summary>
+        /// Función que agrega una nueva fila en el gridview.
+        /// </summary>
         private void AddNewRowToGrid()
         {
             int rowIndex = 0;
@@ -101,6 +111,9 @@ namespace DiccionarioChino
             //Set Previous Data on Postbacks
             SetPreviousData();
         }
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetPreviousData()
         {
             int rowIndex = 0;
@@ -124,12 +137,20 @@ namespace DiccionarioChino
                 }
             }
         }
-
+        /// <summary>
+        /// Evento que llama a la función que agrega una nueva fila en el gridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ButtonAdd_OnClick(object sender, EventArgs e)
         {
             AddNewRowToGrid();
         }
-
+        /// <summary>
+        /// Bucle que guarda cada fila de textbox, que están dentro del gridview, en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Masivo_OnClick(object sender, EventArgs e)
         {
             using (bdchino contexto = new bdchino())
@@ -153,8 +174,8 @@ namespace DiccionarioChino
                         if (defn.Text != "")
                         {
                             npalabra.defn = defn.Text;
-                            //contexto.PalabrasSuplementarias.Add(npalabra);
-                            //contexto.SaveChanges();
+                            contexto.PalabrasSuplementarias.Add(npalabra);
+                            contexto.SaveChanges();
                             _ok = true;
                         }
                         else
@@ -168,17 +189,27 @@ namespace DiccionarioChino
                 Aviso();
             }
         }
-
+        /// <summary>
+        /// Mensaje de aviso de guardado correcto, llamado al guardar en la base de datos
+        /// </summary>
         protected void Aviso()
         {
             ClientScript.RegisterStartupScript(GetType(), "Aviso", "alert('Se ha guardado correctamente');", true);
         }
-
+        /// <summary>
+        /// Reinicio de tabla de la pestaña par agregar varias palabras
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ResetMass_OnClick(object sender, EventArgs e)
         {
             SetInitialRow();
         }
-
+        /// <summary>
+        /// Reinicio de textbox de nuevo registro individual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Reset_1_OnClick(object sender, EventArgs e)
         {
             tbpalabra.Text = "";
