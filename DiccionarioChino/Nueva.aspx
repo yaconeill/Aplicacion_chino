@@ -23,6 +23,7 @@
             height: auto !important;
             font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
         }
+
         .txbpalabra {
             font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
             font-size: 22px;
@@ -41,7 +42,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="Index.aspx"><span>BD</span> Palabras en Chino</a>
-<%--                <ul class="user-menu">
+                <%--                <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
@@ -97,7 +98,7 @@
                     <use xlink:href="#stroked-plus-sign"></use></svg>
                 Agregar nuevas</a></li>
             <li role="presentation" class="divider"></li>
-<%--            <li><a href="login.html">
+            <%--            <li><a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xlink:href="#stroked-male-user"></use></svg>
                 Login Page</a></li>--%>
@@ -142,24 +143,31 @@
                                         <div class="tab-content">
                                             <div class="tab-pane fade in active" id="tab1">
                                                 <%--<h4></h4>--%>
-                                                <asp:GridView ID="GVmassadd" runat="server" 
-                                                    CssClass="table" ShowFooter="true" 
+                                                <asp:GridView ID="GVmassadd" runat="server"
+                                                    CssClass="table" ShowFooter="true"
                                                     AutoGenerateColumns="false">
                                                     <Columns>
                                                         <asp:BoundField DataField="RowNumber" HeaderText="" />
                                                         <asp:TemplateField HeaderText="Palabra">
                                                             <ItemTemplate>
-                                                                <asp:TextBox runat="server" CssClass="form-control txbpalabra" ng-model="name" ID="txbpalabra"></asp:TextBox>
+                                                                <asp:TextBox runat="server" CssClass="form-control txbpalabra" ng-model="name" ID="txbpalabra" required="required"></asp:TextBox>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Pronunciación">
                                                             <ItemTemplate>
-                                                                <asp:TextBox runat="server" CssClass="form-control" ID="txbpron"></asp:TextBox>
+                                                                <asp:TextBox runat="server" CssClass="form-control" ID="txbpron" required="required"></asp:TextBox>
+                                                                <asp:RegularExpressionValidator runat="server"
+                                                                    ID="txbpron_valiadator"
+                                                                    ControlToValidate="txbpron"
+                                                                    ErrorMessage="El formato del texto debe ser como el siguiente: shang1hai3."
+                                                                    ValidationExpression="([a-z]{1,6}[1-5]?)+"
+                                                                    ForeColor="Red">
+                                                                </asp:RegularExpressionValidator>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Definición">
                                                             <ItemTemplate>
-                                                                <asp:TextBox runat="server" CssClass="form-control" ID="txbdefn"></asp:TextBox>
+                                                                <asp:TextBox runat="server" CssClass="form-control" ID="txbdefn" required="required"></asp:TextBox>
                                                             </ItemTemplate>
                                                             <FooterStyle HorizontalAlign="Right" />
                                                             <FooterTemplate>
@@ -169,8 +177,8 @@
                                                     </Columns>
                                                 </asp:GridView>
                                                 <div class="col-md-6">
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="Masivo" OnClick="Masivo_OnClick">Enviar</asp:LinkButton>
-                                                    <button type="reset" class="btn btn-default">Limpiar formulario</button>
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="Masivo" OnClick="Masivo_OnClick" OnClientClick="mass_validate();" >Enviar</asp:LinkButton>
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-default" ID="ResetMass" OnClick="ResetMass_OnClick">Limpiar formulario</asp:LinkButton>
                                                 </div>
 
                                             </div>
@@ -178,23 +186,23 @@
                                                 <%--<h4></h4>--%>
                                                 <div class="form-group" ng-app="">
                                                     <asp:Label runat="server">Palabra</asp:Label>
-                                                    <p id="palabra"  ng-bind="name" class="text-center"></p>
+                                                    <p id="palabra" ng-bind="name" class="text-center"></p>
                                                     <asp:TextBox runat="server" CssClass="form-control" ng-model="name" ID="tbpalabra"></asp:TextBox>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <asp:Label runat="server">Pronunciación</asp:Label>
-                                                    <asp:TextBox runat="server" CssClass="form-control" ID="tbpron"></asp:TextBox>
+                                                    <asp:TextBox runat="server" CssClass="form-control" pattern="([A-Za-z]{1,6}[1-5]?)+" ID="tbpron" required="required"></asp:TextBox>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <asp:Label runat="server">Definición</asp:Label>
-                                                    <asp:TextBox runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" ID="tbdefn"></asp:TextBox>
+                                                    <asp:TextBox runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" ID="tbdefn" required="required"></asp:TextBox>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick">Agregar</asp:LinkButton>
-                                                    <button type="reset" class="btn btn-default">Limpiar formulario</button>
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick" OnClientClick="text_validate();">Agregar</asp:LinkButton>
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-default" ID="Reset_1" OnClick="Reset_1_OnClick">Limpiar formulario</asp:LinkButton>
                                                 </div>
 
                                             </div>
@@ -216,11 +224,7 @@
     <!--/.main-->
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/chart.min.js"></script>
-    <script src="js/chart-data.js"></script>
-    <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/JavaScript.js"></script>
 </body>
 </html>

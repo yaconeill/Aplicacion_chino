@@ -929,16 +929,16 @@ h1.page-header {
 	overflow: scroll;
 }
 /*--------------Mis estilos-------------*/
-.table-bordered > tbody > tr > td:first-child {
+.table-bordered > tbody > tr > td:nth-child(2) {
     font-size: 23px;
     font-family: "WenQuanYi Micro Hei", "UKai", "STKaiTi", "KaiTi" !important;
 }
 .table-bordered > tbody > tr > td:nth-child(1n+2) {
     padding-top: 15px !important;
 }
-.table-bordered > tbody > tr > td:nth-child(4) {
+/*.table-bordered > tbody > tr > td:nth-child(4) {
     display: none;
 }
 .table-bordered > tbody > tr > th:nth-child(4) {
     display: none;
-}
+}*/

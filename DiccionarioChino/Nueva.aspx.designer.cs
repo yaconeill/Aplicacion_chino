@@ -31,6 +31,15 @@ namespace DiccionarioChino {
         protected global::System.Web.UI.WebControls.LinkButton Masivo;
         
         /// <summary>
+        /// Control ResetMass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ResetMass;
+        
+        /// <summary>
         /// Control tbpalabra.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace DiccionarioChino {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbdefn;
+        
+        /// <summary>
+        /// Control Reset_1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Reset_1;
     }
 }

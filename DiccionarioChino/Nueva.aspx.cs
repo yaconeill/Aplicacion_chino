@@ -10,6 +10,7 @@ namespace DiccionarioChino
 {
     public partial class Nueva : System.Web.UI.Page
     {
+        private bool _ok;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -24,9 +25,9 @@ namespace DiccionarioChino
             {
                 var npalabra = new PalabrasSuplementaria();
                 npalabra.headword = tbpalabra.Text;
-                npalabra.pron = tbpron.Text;
+                npalabra.pron = (tbpron.Text).ToLower();
                 npalabra.defn = tbdefn.Text;
-                if (npalabra.headword != "")
+                if (npalabra.headword != "" && npalabra.pron != "" && npalabra.defn != "")
                 {
                     contexto.PalabrasSuplementarias.Add(npalabra);
                     contexto.SaveChanges();
@@ -141,22 +142,28 @@ namespace DiccionarioChino
                         TextBox word = row.FindControl("txbpalabra") as TextBox;
                         TextBox pron = row.FindControl("txbpron") as TextBox;
                         TextBox defn= row.FindControl("txbdefn") as TextBox;
-                        if (word != null)
+                        if (word.Text != "")
                         {
                             npalabra.headword = word.Text;
                         }
-                        if (pron != null)
+                        if (pron.Text != "")
                         {
-                            npalabra.pron = pron.Text;
+                            npalabra.pron = (pron.Text).ToLower();
                         }
-                        if (defn != null)
+                        if (defn.Text != "")
                         {
                             npalabra.defn = defn.Text;
-                            contexto.PalabrasSuplementarias.Add(npalabra);
-                            contexto.SaveChanges();
+                            //contexto.PalabrasSuplementarias.Add(npalabra);
+                            //contexto.SaveChanges();
+                            _ok = true;
+                        }
+                        else
+                        {
+                            _ok = false;
                         }
                     }
                 }
+                if (!_ok) return;
                 SetInitialRow();
                 Aviso();
             }
@@ -165,6 +172,18 @@ namespace DiccionarioChino
         protected void Aviso()
         {
             ClientScript.RegisterStartupScript(GetType(), "Aviso", "alert('Se ha guardado correctamente');", true);
+        }
+
+        protected void ResetMass_OnClick(object sender, EventArgs e)
+        {
+            SetInitialRow();
+        }
+
+        protected void Reset_1_OnClick(object sender, EventArgs e)
+        {
+            tbpalabra.Text = "";
+            tbpron.Text = "";
+            tbdefn.Text = "";
         }
     }
 }

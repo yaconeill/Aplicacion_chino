@@ -134,10 +134,10 @@
                                 DataKeyNames="headword"
                                 CssClass="table table-bordered bs-table text-center">
                                 <Columns>
+                                    <asp:BoundField DataField="id" ItemStyle-CssClass="id" HeaderText="Id"></asp:BoundField>
                                     <asp:BoundField DataField="headword" ItemStyle-CssClass="headword" HeaderText="Palabra"></asp:BoundField>
                                     <asp:BoundField DataField="pron" ItemStyle-CssClass="pron" HeaderText="Pronunciación"></asp:BoundField>
                                     <asp:BoundField DataField="defn" ItemStyle-CssClass="defn" HeaderText="defn"></asp:BoundField>
-                                    <asp:BoundField DataField="id" ItemStyle-CssClass="id" HeaderText="Id"></asp:BoundField>
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <asp:LinkButton runat="server" ID="lnkView" CssClass="btn btn-primary btn-xs"><span class="glyphicon glyphicon-zoom-in"></span></asp:LinkButton>
