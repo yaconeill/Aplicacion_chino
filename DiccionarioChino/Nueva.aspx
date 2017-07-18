@@ -201,7 +201,7 @@
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick" OnClientClick="text_validate();">Agregar</asp:LinkButton>
+                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary" OnClick="OnClick" OnClientClick="return text_validate();">Agregar</asp:LinkButton>
                                                     <asp:LinkButton runat="server" CssClass="btn btn-default" ID="Reset_1" OnClick="Reset_1_OnClick">Limpiar formulario</asp:LinkButton>
                                                 </div>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace DiccionarioChino
@@ -28,17 +29,29 @@ namespace DiccionarioChino
             using (bdchino contexto = new bdchino())
             {
                 var npalabra = new PalabrasSuplementaria();
-                npalabra.headword = tbpalabra.Text;
-                npalabra.pron = (tbpron.Text).ToLower();
-                npalabra.defn = tbdefn.Text;
+                npalabra.headword = tbpalabra.Text.Trim();
+                npalabra.pron = (tbpron.Text).ToLower().Trim();
+                npalabra.defn = tbdefn.Text.Trim();
                 if (npalabra.headword != "" && npalabra.pron != "" && npalabra.defn != "")
                 {
+                    var p = contexto.PalabrasSuplementarias.SingleOrDefault(x => x.headword == tbpalabra.Text);
+                    if (p.headword == tbpalabra.Text && p.pron == tbpron.Text && p.defn == tbdefn.Text)
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "Aviso", "alert('La palabra introducida ya existe.');", true);
+                    }
+                    else
+                    {
+                        contexto.PalabrasSuplementarias.Add(npalabra);
+                        //contexto.SaveChanges();
+                        _ok = true;
+                    }
+
                     contexto.PalabrasSuplementarias.Add(npalabra);
-                    contexto.SaveChanges();
+                    //contexto.SaveChanges();
                     tbpalabra.Text = "";
                     tbpron.Text = "";
                     tbdefn.Text = "";
-                    Aviso(); 
+                    Aviso();
                 }
             }
         }
@@ -162,21 +175,29 @@ namespace DiccionarioChino
                     {
                         TextBox word = row.FindControl("txbpalabra") as TextBox;
                         TextBox pron = row.FindControl("txbpron") as TextBox;
-                        TextBox defn= row.FindControl("txbdefn") as TextBox;
+                        TextBox defn = row.FindControl("txbdefn") as TextBox;
                         if (word.Text != "")
                         {
-                            npalabra.headword = word.Text;
+                            npalabra.headword = word.Text.Trim();
                         }
-                        if (pron.Text != "")
+                        else if (pron.Text != "")
                         {
-                            npalabra.pron = (pron.Text).ToLower();
+                            npalabra.pron = (pron.Text).ToLower().Trim();
                         }
-                        if (defn.Text != "")
+                        else if (defn.Text != "")
                         {
-                            npalabra.defn = defn.Text;
-                            contexto.PalabrasSuplementarias.Add(npalabra);
-                            contexto.SaveChanges();
-                            _ok = true;
+                            npalabra.defn = defn.Text.Trim();
+                            var p = contexto.PalabrasSuplementarias.SingleOrDefault(x => x.headword == word.Text);
+                            if (p.headword == word.Text && p.pron == pron.Text && p.defn == defn.Text)
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "Aviso", "alert('La palabra" + word.Text + " introducida ya existe.');", true);
+                            }
+                            else
+                            {
+                                contexto.PalabrasSuplementarias.Add(npalabra);
+                                //contexto.SaveChanges();
+                                _ok = true;
+                            }
                         }
                         else
                         {
@@ -184,9 +205,11 @@ namespace DiccionarioChino
                         }
                     }
                 }
-                if (!_ok) return;
-                SetInitialRow();
-                Aviso();
+                if (_ok)
+                {
+                    SetInitialRow();
+                    Aviso();
+                }
             }
         }
         /// <summary>

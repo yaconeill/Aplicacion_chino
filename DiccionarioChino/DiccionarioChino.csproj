@@ -111,6 +111,7 @@
     <Content Include="js\jquery-1.11.1.min.js" />
     <Content Include="js\lumino.glyphs.js" />
     <Content Include="js\respond.min.js" />
+    <Content Include="Login.aspx" />
     <Content Include="Nueva.aspx" />
     <Content Include="packages.config" />
     <Content Include="less\mixins.less" />
@@ -303,6 +304,16 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Helper.cs" />
+    <Compile Include="Login\Login.cs" />
+    <Compile Include="Login\UsuarioEntity.cs" />
     <Compile Include="Nueva.aspx.cs">
       <DependentUpon>Nueva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

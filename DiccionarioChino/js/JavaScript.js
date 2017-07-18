@@ -49,6 +49,7 @@ function mass_validate() {
         }
         if (falta.length > 2) {
             alert('En la línea ' + (i + 1) + ' faltan los campos:' + falta);
+                return false;
         }
         if (word !== '') {
             if (!word.match(wordExp)) {
